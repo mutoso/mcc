@@ -1,7 +1,16 @@
 [package]
 name = "mcc"
 version = "0.1.0"
+description = "mutos Compiler for C"
+
+homepage = "https://mutos.org"
+repository = "https://github.com/mutoso/mcc"
+
 authors = ["Alastair Feille <me@alastair.se>"]
+
+license = "MPL-2.0"
+readme = "README.md"
+
 edition = "2018"
 
 [dependencies]
