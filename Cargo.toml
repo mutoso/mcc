@@ -15,6 +15,9 @@ edition = "2018"
 
 [dependencies]
 regex = "1"
-log = "0.4.6"
 env_logger = "0.6.1"
 clap = "2.33.0"
+
+[dependencies.log]
+version = "0.4.6"
+features = ["release_max_level_info"]
