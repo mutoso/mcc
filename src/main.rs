@@ -51,7 +51,7 @@ fn main()
 
     // parse arguments
     let args = App::new("mcc").version(env!("CARGO_PKG_VERSION"))
-                              .about("mutos compiler for C")
+                              .about(env!("CARGO_PKG_DESCRIPTION"))
                               .author(env!("CARGO_PKG_AUTHORS"))
                               .arg(Arg::with_name("file").help("input files")
                                                          .required(true)
