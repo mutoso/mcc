@@ -17,7 +17,7 @@ mod tokenizer;
 use clap::{App, Arg};
 use env_logger::fmt::Color;
 use log::Level;
-use std::{fs, io::Write};
+use std::{fs, io::Write, path::Path};
 
 fn main()
 {
@@ -32,16 +32,18 @@ fn main()
                                  Level::Warn => style.set_color(Color::Yellow),
                                  Level::Error => style.set_color(Color::Red).set_bold(true)
                              };
+                             let filename =
+                                 match Path::new(record.file().unwrap_or("UNKNOWN")).file_name()
+                                 {
+                                     None => "UNKNOWN".to_string(),
+                                     Some(s) => s.to_string_lossy().to_string()
+                                 };
                              writeln!(buf,
                                       "[{} {} {}::{}:{}] {}",
                                       buf.timestamp(),
                                       style.value(record.level()),
                                       record.module_path().unwrap_or("UNKNOWN"),
-                                      record.file()
-                                            .unwrap_or("UNKNOWN")
-                                            .split('/')
-                                            .last()
-                                            .unwrap_or("UNKNOWN"),
+                                      filename,
                                       record.line().unwrap_or(0),
                                       record.args())
                          })
